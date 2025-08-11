@@ -1,10 +1,15 @@
+import com.back.App;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        experiment2();
+        new App(new Scanner(System.in))
+                .run();
+
+        //experiment2();
     }
 
     //출력을 모니터가 아닌 내 저장소로 연결
