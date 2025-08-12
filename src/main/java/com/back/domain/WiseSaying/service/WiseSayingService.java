@@ -23,11 +23,11 @@ public class WiseSayingService {
 
     public List<WiseSaying> findListDesc(String kw, String kwType) {
 
-        if (kwType.equals("content")) {
-            return wiseSayingRepository.findByContentContainingDesc(kw);
-        }
-
-        return wiseSayingRepository.findByAuthorContainingDesc(kw);
+        return switch (kwType) {
+            case "content" -> wiseSayingRepository.findByContentContainingDesc(kw);
+            case "author" -> wiseSayingRepository.findByAuthorContainingDesc(kw);
+            default -> wiseSayingRepository.findByContentContainingOrAuthorContainingDesc(kw);
+        };
     }
 
     public boolean delete(int id) {
