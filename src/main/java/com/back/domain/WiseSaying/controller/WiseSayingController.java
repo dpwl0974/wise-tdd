@@ -56,4 +56,14 @@ public class WiseSayingController {
         System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
 
     }
+
+    public void actonModify(Rq rq) {
+        int id = rq.getParamAsInt("id", -1);
+
+        WiseSaying wiseSaying = wiseSayingService.findByIdOrNull(id);
+
+        if(wiseSaying == null) {
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+        }
+    }
 }
