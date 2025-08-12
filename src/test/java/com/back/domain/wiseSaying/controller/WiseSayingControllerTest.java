@@ -253,7 +253,7 @@ public class WiseSayingControllerTest {
                         """.formatted(num, num))
                 .collect(Collectors.joining("\n"));
 
-        input += "목록\n";
+        input += "목록?page=2\n";
 
         String out = AppTestRunner.run(input);
 
@@ -268,5 +268,5 @@ public class WiseSayingControllerTest {
                 .contains("3 / 작가 3 / 명언 3")
                 .contains("2 / 작가 2 / 명언 2")
                 .contains("1 / 작가 1 / 명언 1");
-    }
+        }
 }
