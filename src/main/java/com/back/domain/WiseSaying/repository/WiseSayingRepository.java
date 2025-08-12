@@ -31,25 +31,29 @@ public class WiseSayingRepository {
                 .orElse(null);
     }
 
+    //명언 조회
+    // limit 무조건 filter 다음에 와야 함. (순서 중요 ⭐️)️
     public List<WiseSaying> findByContentContainingDesc(String kw) {
-        return wiseSayings.stream()
+        return wiseSayings.reversed().stream()
                 .filter(w -> w.getSaying().contains(kw))
-                .toList()
-                .reversed();
+                .limit(5)
+                .toList();
     }
 
+    //작가 조회
     public List<WiseSaying> findByAuthorContainingDesc(String kw) {
 
-        return wiseSayings.stream()
+        return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw))
-                .toList()
-                .reversed();
+                .limit(5)
+                .toList();
     }
 
+    //명언 또는 작가 조회
     public List<WiseSaying> findByContentContainingOrAuthorContainingDesc(String kw) {
-        return wiseSayings.stream()
+        return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw) || w.getSaying().contains(kw))
-                .toList()
-                .reversed();
+                .limit(5)
+                .toList();
     }
 }
