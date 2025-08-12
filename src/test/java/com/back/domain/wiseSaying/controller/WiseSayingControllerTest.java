@@ -114,4 +114,19 @@ public class WiseSayingControllerTest {
                 .contains("1번 명언은 존재하지 않습니다.");
 
     }
+
+    @Test
+    @DisplayName("수정?id=3, 없는 명언에 대한 수정 요청")
+    void t7() {
+        String out = AppTestRunner.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                수정?id=3
+                """);
+
+        assertThat(out)
+                .contains("3번 명언은 존재하지 않습니다.");
+
+    }
 }
