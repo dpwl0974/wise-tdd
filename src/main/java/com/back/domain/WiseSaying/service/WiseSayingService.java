@@ -21,8 +21,13 @@ public class WiseSayingService {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findListDesc(String kw) {
-        return wiseSayingRepository.findListDesc(kw);
+    public List<WiseSaying> findListDesc(String kw, String kwType) {
+
+        if (kwType.equals("content")) {
+            return wiseSayingRepository.findByContentContainingDesc(kw);
+        }
+
+        return wiseSayingRepository.findByAuthorContainingDesc(kw);
     }
 
     public boolean delete(int id) {
