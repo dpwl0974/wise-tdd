@@ -68,10 +68,12 @@ public class WiseSayingControllerTest {
 
     }
 
+
+
     //삭제 확인을 위해 삭제 후 목록 확인
     //2번은 나오고 1번은 안나와야 함
     @Test
-    @DisplayName("삭제")
+    @DisplayName("삭제?id=1")
     void t5() {
         String out = AppTestRunner.run("""
                 등록
@@ -80,16 +82,16 @@ public class WiseSayingControllerTest {
                 등록
                 과거에 집착하지 마라.
                 작자미상
-                목록
                 삭제?id=1
                 목록
                 """);
 
+        System.out.println(out);
+
         assertThat(out)
-                .contains("1번 명언이 삭제되었습니니다.")
+                .contains("1번 명언이 삭제되었습니다.")
                 .contains("2 / 작자미상 / 과거에 집착하지 마라.")
                 .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
-
 
     }
 }
