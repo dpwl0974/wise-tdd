@@ -33,10 +33,13 @@ public class WiseSayingController {
         String kw = rq.getParam("keyword", "");
         String kwType = rq.getParam("keywordType", "");
 
+        int pageSize = 5;
+        int pageNo = 1; // 현재 페이지
+
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
 
-        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(kw, kwType);
+        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(kw, kwType, pageSize, pageNo);
 
         wiseSayings
                 .reversed()

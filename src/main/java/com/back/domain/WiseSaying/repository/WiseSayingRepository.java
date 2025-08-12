@@ -33,27 +33,27 @@ public class WiseSayingRepository {
 
     //명언 조회
     // limit 무조건 filter 다음에 와야 함. (순서 중요 ⭐️)️
-    public List<WiseSaying> findByContentContainingDesc(String kw) {
+    public List<WiseSaying> findByContentContainingDesc(String kw, int pageSize, int pageNo) {
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getSaying().contains(kw))
-                .limit(5)
+                .limit(pageSize)
                 .toList();
     }
 
     //작가 조회
-    public List<WiseSaying> findByAuthorContainingDesc(String kw) {
+    public List<WiseSaying> findByAuthorContainingDesc(String kw, int pageSize, int pageNo) {
 
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw))
-                .limit(5)
+                .limit(pageSize)
                 .toList();
     }
 
     //명언 또는 작가 조회
-    public List<WiseSaying> findByContentContainingOrAuthorContainingDesc(String kw) {
+    public List<WiseSaying> findByContentContainingOrAuthorContainingDesc(String kw, int pageSize, int pageNo) {
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw) || w.getSaying().contains(kw))
-                .limit(5)
+                .limit(pageSize)
                 .toList();
     }
 }
