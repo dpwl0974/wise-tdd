@@ -115,6 +115,7 @@ public class WiseSayingControllerTest {
 
     }
 
+    //수정 예외처리
     @Test
     @DisplayName("수정?id=3, 없는 명언에 대한 수정 요청")
     void t7() {
