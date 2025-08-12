@@ -26,7 +26,7 @@ public class WiseSayingService {
         return switch (kwType) {
             case "content" -> wiseSayingRepository.findByContentContainingDesc(kw, pageSize, pageNo);
             case "author" -> wiseSayingRepository.findByAuthorContainingDesc(kw, pageSize, pageNo);
-            default -> wiseSayingRepository.findByContentContainingOrAuthorContainingDesc(kw, pageSize, pageNo);
+            default -> wiseSayingRepository.findByContentContainingOrAuthorContainingDesc(kw, pageSize, pageNo).getContent();
         };
     }
 

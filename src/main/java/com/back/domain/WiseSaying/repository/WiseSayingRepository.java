@@ -1,5 +1,6 @@
 package com.back.domain.WiseSaying.repository;
 
+import com.back.PageDto;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
@@ -53,11 +54,17 @@ public class WiseSayingRepository {
     }
 
     //명언 또는 작가 조회
-    public List<WiseSaying> findByContentContainingOrAuthorContainingDesc(String kw, int pageSize, int pageNo) {
-        return wiseSayings.reversed().stream()
+    public PageDto findByContentContainingOrAuthorContainingDesc(String kw, int pageSize, int pageNo) {
+        List<WiseSaying> filteredContent = wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw) || w.getSaying().contains(kw))
+                .toList();
+
+        List<WiseSaying> content = filteredContent.stream()
                 .skip(pageSize * (pageNo - 1))
                 .limit(pageSize)
                 .toList();
+
+        int totalItems = filteredContent.size();
+        return new PageDto(pageNo, pageSize, totalItems, content);
     }
 }
