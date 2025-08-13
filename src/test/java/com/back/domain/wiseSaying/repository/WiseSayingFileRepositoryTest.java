@@ -23,7 +23,7 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying("rksk","rksjk");
 
         wiseSayingFileRepository.save(wiseSaying);
-        WiseSaying foundwiseSaying =wiseSayingFileRepository.FindByIdOrNull(1);
+        WiseSaying foundwiseSaying = wiseSayingFileRepository.FindByIdOrNull(1);
         assertThat(foundwiseSaying).isEqualTo(wiseSaying);
     }
 }
