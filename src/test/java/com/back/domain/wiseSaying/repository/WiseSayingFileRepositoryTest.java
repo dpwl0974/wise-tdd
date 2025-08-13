@@ -4,9 +4,7 @@ import com.back.AppContext;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 import com.back.domain.WiseSaying.repository.WiseSayingFileRepository;
 import com.back.standard.util.Util;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +21,12 @@ public class WiseSayingFileRepositoryTest {
     // 각 테스트 케이스 독립성 보장
     @BeforeEach
     void beforeEach() {
-            Util.file.delete("db/WiseSaying");
+        WiseSayingFileRepository.clear();
+    }
+
+    @AfterEach
+    void afterEach() {
+        WiseSayingFileRepository.clear();
     }
 
     @Test
