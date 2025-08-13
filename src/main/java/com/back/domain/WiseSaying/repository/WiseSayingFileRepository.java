@@ -11,15 +11,28 @@ public class WiseSayingFileRepository {
     //직렬화
     public void save(WiseSaying wiseSaying) {
 
-        if(wiseSaying.isNew()){
-            wiseSaying.setId(1);
-            String jsonStr = Util.json.toString(wiseSaying.toMap()); //객체 바로 넣으면 안되므로 문자열로 변환
-            Util.file.set("db/WiseSaying/1.json", jsonStr);
+        if(wiseSaying.isNew()) {
+
+            incrementLastId();
+            int lastId = getLastId();
+            wiseSaying.setId(lastId);
+            String jsonStr = Util.json.toString(wiseSaying.toMap());
+            Util.file.set("db/wiseSaying/%d.json".formatted(wiseSaying.getId()), jsonStr);
         }
     }
+    //기존 아이디 + 1
+    private void incrementLastId(){
+        Util.file.set("db/WiseSaying/lastId.txt", String.valueOf(getLastId()+1));
+    }
+
+    private int getLastId() {
+        //int로 반환
+        return Util.file.getAsInt("db/wiseSaying/lastId.txt", 0);
+    }
+
     //역직렬화
-    public WiseSaying FindByIdOrNull(int i) {
-        String jsonStr = Util.file.get("db/WiseSaying/1.json","");
+    public WiseSaying FindByIdOrNull(int id) {
+        String jsonStr = Util.file.get("db/wiseSaying/%d.json".formatted(id), "");
 
         if(jsonStr.isEmpty()){
             return null;

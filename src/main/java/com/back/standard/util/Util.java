@@ -61,6 +61,20 @@ public class Util {
             }
         }
 
+        public static int getAsInt(String filePath, int defaultValue) {
+
+            String rst = get(filePath, "");
+
+            if(rst.isEmpty()) return defaultValue;
+
+            try {
+                return Integer.parseInt(rst);
+            } catch (NumberFormatException e) {
+                return defaultValue;
+            }
+
+        }
+
         public static boolean rmdir(String dirPath) {
             return delete(dirPath);
         }
