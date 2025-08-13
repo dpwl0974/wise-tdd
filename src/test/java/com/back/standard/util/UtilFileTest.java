@@ -20,8 +20,8 @@ public class UtilFileTest {
 
         //결과 -> 실제 파일이 존재하는가?
         boolean rst = Util.file.exists(filePath);
-
         assertThat(rst).isTrue();
+
 
     }
 
