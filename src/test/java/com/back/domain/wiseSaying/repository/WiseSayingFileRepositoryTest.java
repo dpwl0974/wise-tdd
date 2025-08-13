@@ -46,10 +46,10 @@ public class WiseSayingFileRepositoryTest {
         wiseSayingFileRepository.save(wiseSaying1);
         wiseSayingFileRepository.save(wiseSaying2);
 
-        WiseSaying foundwiseSaying1 = wiseSayingFileRepository.FindByIdOrNull(1);
-        assertThat(foundwiseSaying1).isEqualTo(wiseSaying1);
+        WiseSaying foundWiseSaying1 = wiseSayingFileRepository.FindByIdOrNull(1);
+        assertThat(foundWiseSaying1).isEqualTo(wiseSaying1);
 
-        WiseSaying foundwiseSaying2 = wiseSayingFileRepository.FindByIdOrNull(2);
-        assertThat(foundwiseSaying2).isEqualTo(wiseSaying2);
+        WiseSaying foundWiseSaying2 = wiseSayingFileRepository.FindByIdOrNull(2);
+        assertThat(foundWiseSaying2).isEqualTo(wiseSaying2);
     }
 }
