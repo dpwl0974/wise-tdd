@@ -35,32 +35,39 @@ public class WiseSayingRepository {
     // 명언 조회
     // limit 무조건 filter 다음에 와야 함. (순서 중요 ⭐️)️
     // 페이지 하나씩 넘어갈 때마다 n-1번 skip 할거임 -> 즉, (pageNo) - 1 * pageSize
-    public List<WiseSaying> findByContentContainingDesc(String kw, int pageSize, int pageNo) {
-        return wiseSayings.reversed().stream()
+    public PageDto findByContentContainingDesc(String kw, int pageSize, int pageNo) {
+        List<WiseSaying> filteredContent = wiseSayings.reversed().stream()
                 .filter(w -> w.getSaying().contains(kw))
-                .skip(pageSize * (pageNo - 1))
-                .limit(pageSize)
                 .toList();
+
+        return pageOf(filteredContent, pageNo, pageSize);
     }
 
     //작가 조회
-    public List<WiseSaying> findByAuthorContainingDesc(String kw, int pageSize, int pageNo) {
+    public PageDto findByAuthorContainingDesc(String kw, int pageSize, int pageNo) {
 
-        return wiseSayings.reversed().stream()
+        List<WiseSaying> filteredContent = wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw))
-                .skip(pageSize * (pageNo - 1))
-                .limit(pageSize)
                 .toList();
+
+        return pageOf(filteredContent, pageNo, pageSize);
     }
 
     //명언 또는 작가 조회
     public PageDto findByContentContainingOrAuthorContainingDesc(String kw, int pageSize, int pageNo) {
+
+
         List<WiseSaying> filteredContent = wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw) || w.getSaying().contains(kw))
                 .toList();
 
+        return pageOf(filteredContent, pageNo, pageSize);
+    }
+
+    private PageDto pageOf(List<WiseSaying> filteredContent, int pageNo, int pageSize) {
+
         List<WiseSaying> content = filteredContent.stream()
-                .skip(pageSize * (pageNo - 1))
+                .skip((pageNo-1) * pageSize)
                 .limit(pageSize)
                 .toList();
 
