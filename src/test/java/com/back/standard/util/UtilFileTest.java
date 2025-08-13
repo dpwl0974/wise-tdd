@@ -22,6 +22,8 @@ public class UtilFileTest {
         boolean rst = Util.file.exists(filePath);
         assertThat(rst).isTrue();
 
+        //테스트가 끝나면 파일 삭제
+        Util.file.delete(filePath);
 
     }
 
