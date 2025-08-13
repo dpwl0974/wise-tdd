@@ -36,21 +36,14 @@ public class Util {
         }
 
         private static void handleFileWriteError(Path path, String content, IOException e) {
-            Path parentDir = path.getParent();
-            if (parentDir != null && Files.notExists(parentDir)) {
-                try {
-                    Files.createDirectories(parentDir);
-                    writeFile(path, content);
-                } catch (IOException ex) {
-                    throw new RuntimeException("파일 쓰기 실패: " + path, ex);
-                }
-            } else {
-                throw new RuntimeException("파일 접근 실패: " + path, e);
-            }
+
         }
 
         public static boolean exists(String filePath) {
             return Files.exists(getPath(filePath));
+        }
+
+        public static void delete(String filePath) {
         }
     }
 
