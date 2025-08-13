@@ -34,11 +34,41 @@ public class Util {
         }
 
         private static void handleFileWriteError(Path path, String content, IOException e) {
-
+            Path parentDir = path.getParent();
+            if (parentDir != null && Files.notExists(parentDir)) {
+                try {
+                    Files.createDirectories(parentDir);
+                    writeFile(path, content);
+                } catch (IOException ex) {
+                    throw new RuntimeException("파일 쓰기 실패: " + path, ex);
+                }
+            } else {
+                throw new RuntimeException("파일 접근 실패: " + path, e);
+            }
         }
 
         public static boolean exists(String filePath) {
             return Files.exists(getPath(filePath));
+        }
+
+        public static String get(String filePath, String defaultValue) {
+            try {
+                return Files.readString(getPath(filePath));
+            } catch (IOException e) {
+                return defaultValue;
+            }
+        }
+
+        public static boolean rmdir(String dirPath) {
+            return delete(dirPath);
+        }
+
+        public static void  mkdir(String dirPath) {
+            try {
+                Files.createDirectories(getPath(dirPath));
+            } catch (IOException e) {
+                throw new RuntimeException("디렉토리 생성 실패: " + dirPath, e);
+            }
         }
 
         private static class FileDeleteVisitor extends SimpleFileVisitor<Path> {
@@ -62,14 +92,6 @@ public class Util {
                 return true;
             } catch (IOException e) {
                 return false;
-            }
-        }
-
-        public static String get(String filePath, String defaultValue) {
-            try {
-                return Files.readString(getPath(filePath));
-            } catch (IOException e) {
-                return defaultValue;
             }
         }
     }
