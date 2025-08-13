@@ -41,6 +41,22 @@ public class UtilFileTest {
         //then
         boolean rst = Util.file.exists(filePath);
         assertThat(rst).isFalse();
+    }
+
+    @Test
+    @DisplayName("파일 읽기/쓰기")
+    void t3() {
+
+        //given
+        String filePath = "test.txt";
+        Util.file.set(filePath, "hello word"); // 파일 쓰기
+
+        //when
+        String content = Util.file.get(filePath, "");
+
+        //then
+
+        assertThat(content).isEqualTo("hello word");
 
     }
 }

@@ -64,6 +64,10 @@ public class Util {
                 return false;
             }
         }
+
+        public static String get(String filePath, String s) {
+            return "";
+        }
     }
 
     public static class json {
