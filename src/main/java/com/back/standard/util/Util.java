@@ -3,6 +3,7 @@ package com.back.standard.util;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 //파일 관련
 public class Util {
@@ -97,6 +98,9 @@ public class Util {
     }
 
     public static class json {
+        public static String toString(Map<String, Object> map) {
+            return "";
+        }
 
     }
 
