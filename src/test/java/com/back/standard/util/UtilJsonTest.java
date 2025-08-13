@@ -26,12 +26,34 @@ public class UtilJsonTest {
         // then
         assertThat(jsonStr).isEqualTo(
                 """
+                        {
+                            "id": 1,
+                            "name": "홍길동",
+                            "age": 20
+                        }"""
+        );
+
+    }
+
+    @Test
+    @DisplayName("Json -> Map")
+    void t2() {
+        // given
+        String jsonStr = """
                 {
                     "id": 1,
                     "name": "홍길동",
                     "age": 20
-                }"""
-        );
+                }""";
+
+        // when
+        Map<String, Object> map = Util.json.toMap(jsonStr);
+
+        // then
+        assertThat(map)
+                .containsEntry("id", 1)
+                .containsEntry("name", "홍길동")
+                .containsEntry("age", 20);
 
     }
 }
