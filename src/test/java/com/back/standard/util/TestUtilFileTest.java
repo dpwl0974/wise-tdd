@@ -1,6 +1,5 @@
 package com.back.standard.util;
 
-import com.back.AppTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestUtilTest {
+public class TestUtilFileTest {
 
     @Test
     @DisplayName("com.back.standard.util.TestUtil.genScanner()")
