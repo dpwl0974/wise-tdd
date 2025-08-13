@@ -55,8 +55,8 @@ public class UtilFileTest {
         String content = Util.file.get(filePath, "");
 
         //then
-
         assertThat(content).isEqualTo("hello word");
+        Util.file.delete(filePath); // 후처리 -> 테스트가 끝나면 파일 삭제
 
     }
 }
