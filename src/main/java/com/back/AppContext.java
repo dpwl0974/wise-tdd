@@ -2,6 +2,7 @@ package com.back;
 
 import com.back.domain.WiseSaying.controller.WiseSayingController;
 import com.back.domain.WiseSaying.repository.WiseSayingFileRepository;
+import com.back.domain.WiseSaying.repository.WiseSayingMemoryRepository;
 import com.back.domain.WiseSaying.repository.WiseSayingRepository;
 import com.back.domain.WiseSaying.service.WiseSayingService;
 import com.back.system.SystemController;
@@ -16,18 +17,20 @@ public class AppContext {
     public static WiseSayingService wiseSayingService;
     public static WiseSayingRepository wiseSayingRepository;
     public static WiseSayingFileRepository wiseSayingFileRepository;
+    public static WiseSayingMemoryRepository wiseSayingMemoryRepository;
 
     //시스템 초기화
-    public static void init(Scanner _sc) {
+    public static void init(Scanner _sc, boolean isFileMode) {
         AppContext.sc = _sc;
+        AppContext.wiseSayingMemoryRepository = new WiseSayingMemoryRepository();
         AppContext.wiseSayingFileRepository = new WiseSayingFileRepository();
-        AppContext.wiseSayingRepository = new WiseSayingRepository();
+        AppContext.wiseSayingRepository = isFileMode ? new WiseSayingFileRepository() : new WiseSayingMemoryRepository();
         AppContext.wiseSayingService = new WiseSayingService();
         AppContext.wiseSayingController = new WiseSayingController();
         AppContext.systemController = new SystemController();
     }
 
     public static void init() {
-        init(new Scanner(System.in));
+        init(new Scanner(System.in), true);
     }
 }

@@ -6,7 +6,7 @@ import com.back.standard.util.Util;
 
 import java.util.*;
 
-public class WiseSayingFileRepository {
+public class WiseSayingFileRepository implements WiseSayingRepository{
     private static String dbPath = "db/wiseSaying";
 
     public static void clear() {
