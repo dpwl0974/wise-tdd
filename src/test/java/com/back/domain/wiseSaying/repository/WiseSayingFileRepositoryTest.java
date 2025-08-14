@@ -136,7 +136,7 @@ public class WiseSayingFileRepositoryTest {
         PageDto pageDto = wiseSayingFileRepository.findByContentContainingDesc("꿈", 5, 1);
 
         assertThat(pageDto.getContent())
-                .containsExactly(wiseSaying3, wiseSaying1); //순서까지
+                .containsExactly(wiseSaying3, wiseSaying1); //순서까지 , reversed 생각해서 3, 1
 
     }
 }
