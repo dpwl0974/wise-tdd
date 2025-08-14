@@ -8,18 +8,20 @@ import com.back.standard.util.Util;
 import java.util.*;
 
 public class WiseSayingFileRepository implements WiseSayingRepository{
-    private static String dbPath = AppConfig.getMode() + "/db/wiseSaying";
+    public static String getDbPath(){
+        return AppConfig.getMode() + "/db/wiseSaying";
+    }
 
     public static void clear() {
-        Util.file.delete(dbPath);
+        Util.file.delete(getDbPath());
     }
 
     private String getFilePath(int id) {
-        return dbPath + "/%d.json".formatted(id);
+        return getDbPath() + "/%d.json".formatted(id);
     }
 
     private String getLastIdPath() {
-        return dbPath + "/lastId.txt";
+        return getDbPath() + "/lastId.txt";
     }
 
 
@@ -69,7 +71,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository{
     }
 
     public List<WiseSaying> findAll() {
-        return Util.file.walkRegularFiles(dbPath, "^\\d+\\.json$")
+        return Util.file.walkRegularFiles(getDbPath(), "^\\d+\\.json$")
                 .map(path -> Util.file.get(path.toString(), ""))
                 .map(Util.json::toMap)
                 .map(WiseSaying::new)
@@ -113,20 +115,5 @@ public class WiseSayingFileRepository implements WiseSayingRepository{
                 .toList();
 
         return pageOf(filteredWiseSayings, pageNo, pageSize);
-    }
-
-    public String build() {
-        List<WiseSaying> wiseSayings = findAll();
-
-        List<Map<String, Object>> mapList = wiseSayings.stream()
-                .map(WiseSaying::toMap)
-                .toList();
-
-        String jsonStr = Util.json.toString(mapList);
-        String filePath = dbPath + "/data.json";
-
-        Util.file.set(filePath, jsonStr);
-
-        return filePath;
     }
 }

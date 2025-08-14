@@ -23,7 +23,7 @@ public class AppContext {
     public static void init(Scanner _sc, boolean isFileMode) {
         AppContext.sc = _sc;
         AppContext.wiseSayingMemoryRepository = new WiseSayingMemoryRepository();
-        AppContext.wiseSayingFileRepository = new WiseSayingFileRepository();
+        //AppContext.wiseSayingFileRepository = new WiseSayingFileRepository();
         AppContext.wiseSayingRepository = isFileMode ? new WiseSayingFileRepository() : new WiseSayingMemoryRepository();
         AppContext.wiseSayingService = new WiseSayingService();
         AppContext.wiseSayingController = new WiseSayingController();

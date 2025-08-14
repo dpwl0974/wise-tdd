@@ -1,6 +1,8 @@
 package com.back.domain.wiseSaying.controller;
 
+import com.back.AppConfig;
 import com.back.AppTestRunner;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,13 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WiseSayingControllerTest {
+
+    @BeforeAll
+    static void beforeAll() {
+        // 테스트 모드 설정
+        AppConfig.setTestMode();
+        System.out.println("controller, AppConfig.setTestMode() called : " + AppConfig.getMode());
+    }
 
     @Test
     @DisplayName("등록")
@@ -301,20 +310,21 @@ public class WiseSayingControllerTest {
 
     @Test
     @DisplayName("빌드")
-    void t15() {
+    void t16() {
 
         String out = AppTestRunner.run("""
                 등록
-                하하
-                호호
+                현재를 사랑하라.
+                작자미상
                 등록
-                히히
-                흐흐
+                과거에 집착하지 마라.
+                작자미상
                 빌드
-                """
-        );
+                """);
 
         assertThat(out)
                 .contains("data.json 파일의 내용이 갱신되었습니다.");
+
+
     }
 }

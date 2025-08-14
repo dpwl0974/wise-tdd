@@ -24,6 +24,7 @@ public class WiseSayingFileRepositoryTest {
     static void beforeAll() {
         AppConfig.setTestMode();
         AppContext.init();
+        System.out.println("repo, AppConfig.setTestMode() called : " + AppConfig.getMode());
     }
 
     // 각 테스트 케이스마다 전처리 실행

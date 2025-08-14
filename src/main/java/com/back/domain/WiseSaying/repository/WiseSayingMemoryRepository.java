@@ -69,4 +69,10 @@ public class WiseSayingMemoryRepository implements WiseSayingRepository {
         return new PageDto(pageNo, pageSize, totalItems, content);
     }
 
+
+    //인터페이스에 추가했으므로 만들어야 함
+    @Override
+    public List<WiseSaying> findAll() {
+        return wiseSayings;
+    }
 }
