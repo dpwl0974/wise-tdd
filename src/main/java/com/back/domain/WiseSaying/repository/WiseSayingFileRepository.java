@@ -1,5 +1,6 @@
 package com.back.domain.WiseSaying.repository;
 
+import com.back.PageDto;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 import com.back.standard.util.Util;
 
@@ -77,4 +78,9 @@ public class WiseSayingFileRepository {
                 .toList();
 
     }
+
+    public PageDto findByContentContainingDesc(String 꿈, int i, int i1) {
+        return null;
+    }
+
 }

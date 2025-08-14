@@ -1,6 +1,7 @@
 package com.back.domain.wiseSaying.repository;
 
 import com.back.AppContext;
+import com.back.PageDto;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 import com.back.domain.WiseSaying.repository.WiseSayingFileRepository;
 import com.back.standard.util.Util;
@@ -115,6 +116,27 @@ public class WiseSayingFileRepositoryTest {
 
         assertThat(wiseSayings)
                 .containsExactly(wiseSaying1, wiseSaying2, wiseSaying3); //순서까지
+
+    }
+
+    @Test
+    @DisplayName("명언 다건 조회 - content 필터링")
+    void t6() {
+        WiseSaying wiseSaying1 = new WiseSaying("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
+        wiseSayingFileRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("파이팅", "아자ㅏ");
+        wiseSayingFileRepository.save(wiseSaying2);
+
+        WiseSaying wiseSaying3 = new WiseSaying("꿈하하하", "꿈호호호");
+        wiseSayingFileRepository.save(wiseSaying3);
+
+
+        // "꿈" 포함 5개 1페이지
+        PageDto pageDto = wiseSayingFileRepository.findByContentContainingDesc("꿈", 5, 1);
+
+        assertThat(pageDto.getContent())
+                .containsExactly(wiseSaying1, wiseSaying3); //순서까지
 
     }
 }
