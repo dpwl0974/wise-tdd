@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 //파일 관련
 public class Util {
@@ -58,6 +59,16 @@ public class Util {
                 return Files.readString(getPath(filePath));
             } catch (IOException e) {
                 return defaultValue;
+            }
+        }
+
+        public static Stream<Path> walkRegularFiles(String dirPath, String fileNameRegex) {
+            try {
+                return Files.walk(Path.of(dirPath))
+                        .filter(Files::isRegularFile)
+                        .filter(path -> path.getFileName().toString().matches(fileNameRegex));
+            } catch (IOException e) {
+                return Stream.empty();
             }
         }
 

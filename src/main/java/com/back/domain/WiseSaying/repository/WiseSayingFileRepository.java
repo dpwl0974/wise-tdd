@@ -70,6 +70,11 @@ public class WiseSayingFileRepository {
     }
 
     public List<WiseSaying> findAll() {
-        return null;
+        return Util.file.walkRegularFiles(dbPath, "^\\d+\\.json$")
+                .map(path -> Util.file.get(path.toString(), ""))
+                .map(Util.json::toMap)
+                .map(WiseSaying::new)
+                .toList();
+
     }
 }
