@@ -95,4 +95,8 @@ public class WiseSayingFileRepository {
         int totalItems = filteredContent.size();
         return new PageDto(pageNo, pageSize, totalItems, content);
     }
+
+    public PageDto findByAuthorContainingDesc(String 테, int i, int i1) {
+        return null;
+    }
 }
