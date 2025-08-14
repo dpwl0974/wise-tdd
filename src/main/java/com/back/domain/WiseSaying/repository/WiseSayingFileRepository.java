@@ -31,10 +31,12 @@ public class WiseSayingFileRepository {
             incrementLastId();
             int lastId = getLastId();
             wiseSaying.setId(lastId);
-            String jsonStr = Util.json.toString(wiseSaying.toMap());
-            Util.file.set(getFilePath(wiseSaying.getId()), jsonStr);
         }
 
+        //저장 시 수정도 포함
+        //if문에 걸리든 안걸리든 어짜피 함
+        String jsonStr = Util.json.toString(wiseSaying.toMap());
+        Util.file.set(getFilePath(wiseSaying.getId()), jsonStr);
         return wiseSaying;
     }
 
