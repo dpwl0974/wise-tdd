@@ -24,7 +24,7 @@ public class WiseSayingFileRepository {
 
 
     //직렬화
-    public void save(WiseSaying wiseSaying) {
+    public WiseSaying save(WiseSaying wiseSaying) {
 
         if(wiseSaying.isNew()) {
 
@@ -34,7 +34,10 @@ public class WiseSayingFileRepository {
             String jsonStr = Util.json.toString(wiseSaying.toMap());
             Util.file.set(getFilePath(wiseSaying.getId()), jsonStr);
         }
+
+        return wiseSaying;
     }
+
     //기존 아이디 + 1
     private void incrementLastId(){
         Util.file.set(getLastIdPath(), String.valueOf(getLastId() + 1));
@@ -57,5 +60,9 @@ public class WiseSayingFileRepository {
         WiseSaying wiseSaying = new WiseSaying(map); //map 넣으면 객체로 변환
 
         return Optional.of(wiseSaying); //상자에 담음
+    }
+
+    public boolean delete(WiseSaying wiseSaying1) {
+        return Util.file.delete(getFilePath(wiseSaying1.getId()));
     }
 }
