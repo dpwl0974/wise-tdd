@@ -117,6 +117,16 @@ public class WiseSayingFileRepository implements WiseSayingRepository{
 
     public String build() {
         List<WiseSaying> wiseSayings = findAll();
-        return null;
+
+        List<Map<String, Object>> mapList = wiseSayings.stream()
+                .map(WiseSaying::toMap)
+                .toList();
+
+        String jsonStr = Util.json.toString(mapList);
+        String filePath = dbPath + "/data.json";
+
+        Util.file.set(filePath, jsonStr);
+
+        return filePath;
     }
 }
