@@ -114,4 +114,8 @@ public class WiseSayingFileRepository implements WiseSayingRepository{
 
         return pageOf(filteredWiseSayings, pageNo, pageSize);
     }
+
+    public String build() {
+        return null;
+    }
 }
