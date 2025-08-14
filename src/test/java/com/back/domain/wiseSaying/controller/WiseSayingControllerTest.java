@@ -298,4 +298,23 @@ public class WiseSayingControllerTest {
                 .contains("2 / 작가 2 / 명언 2")
                 .contains("1 / 작가 1 / 명언 1");
     }
+
+    @Test
+    @DisplayName("빌드")
+    void t15() {
+
+        String out = AppTestRunner.run("""
+                등록
+                하하
+                호호
+                등록
+                히히
+                흐흐
+                빌드
+                """
+        );
+
+        assertThat(out)
+                .contains("data.json 파일의 내용이 갱신되었습니다.");
+    }
 }
