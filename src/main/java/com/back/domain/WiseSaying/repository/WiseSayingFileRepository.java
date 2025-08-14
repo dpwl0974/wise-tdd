@@ -104,4 +104,8 @@ public class WiseSayingFileRepository {
 
         return pageOf(filteredWiseSayings, pageNo, pageSize);
     }
+
+    public PageDto findByContentContainingOrAuthorContainingDesc(String 꿈, int i, int i1) {
+        return null;
+    }
 }
