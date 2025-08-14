@@ -11,9 +11,9 @@ public class Main {
     public static void main(String[] args) {
         /*WiseSaying w = new WiseSaying( "너 자신을 알라", "소크라테스");
         System.out.println(w);*/
+        AppConfig.setDevMode();
         AppContext.init();
         new App().run();
-        AppConfig.setDevMode();
 
         //experiment2();
     }

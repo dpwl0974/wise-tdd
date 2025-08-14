@@ -48,7 +48,6 @@ public class WiseSayingController {
         PageDto pageDto = wiseSayingService.findListDesc(kw, kwType, pageSize, page);
 
         pageDto.getContent()
-                .reversed()
                 .stream()
                 .forEach(wiseSaying -> System.out.printf("%d / %s / %s%n",
                         wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getSaying()));
@@ -84,7 +83,7 @@ public class WiseSayingController {
 
     }
 
-    public void actonModify(Rq rq) {
+    public void actionModify(Rq rq) {
         int id = rq.getParamAsInt("id", -1);
 
         Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(id);

@@ -116,6 +116,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository{
     }
 
     public String build() {
+        List<WiseSaying> wiseSayings = findAll();
         return null;
     }
 }
