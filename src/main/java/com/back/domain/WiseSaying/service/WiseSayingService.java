@@ -6,6 +6,7 @@ import com.back.domain.WiseSaying.entity.WiseSaying;
 import com.back.domain.WiseSaying.repository.WiseSayingRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class WiseSayingService {
 
@@ -35,8 +36,8 @@ public class WiseSayingService {
         return wiseSayingRepository.delete(id);
     }
 
-    public WiseSaying findByIdOrNull(int id) {
-        return wiseSayingRepository.findByIdOrNull(id);
+    public Optional<WiseSaying> findById(int id) {
+        return wiseSayingRepository.findById(id);
     }
 
     public void modify(WiseSaying wiseSaying, String newSaying, String newAuthor) {

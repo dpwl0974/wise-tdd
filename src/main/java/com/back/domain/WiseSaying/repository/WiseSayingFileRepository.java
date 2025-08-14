@@ -5,6 +5,7 @@ import com.back.standard.util.Util;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public class WiseSayingFileRepository {
     private static String dbPath = "db/wiseSaying";
@@ -45,16 +46,16 @@ public class WiseSayingFileRepository {
     }
 
     //역직렬화
-    public WiseSaying FindByIdOrNull(int id) {
+    public Optional<WiseSaying> findById(int id) {
         String jsonStr = Util.file.get(getFilePath(id), "");
 
         if(jsonStr.isEmpty()){
-            return null;
+            return Optional.empty();
         }
 
         Map<String, Object> map = Util.json.toMap(jsonStr);
         WiseSaying wiseSaying = new WiseSaying(map); //map 넣으면 객체로 변환
 
-        return wiseSaying;
+        return Optional.of(wiseSaying); //상자에 담음
     }
 }
