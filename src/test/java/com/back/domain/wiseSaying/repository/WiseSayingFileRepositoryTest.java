@@ -1,5 +1,6 @@
 package com.back.domain.wiseSaying.repository;
 
+import com.back.AppConfig;
 import com.back.AppContext;
 import com.back.PageDto;
 import com.back.domain.WiseSaying.entity.WiseSaying;
@@ -16,8 +17,13 @@ public class WiseSayingFileRepositoryTest {
     private WiseSayingFileRepository wiseSayingFileRepository;
 
     public WiseSayingFileRepositoryTest() {
-        AppContext.init();
         wiseSayingFileRepository = AppContext.wiseSayingFileRepository;
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        AppConfig.setTestMode();
+        AppContext.init();
     }
 
     // 각 테스트 케이스마다 전처리 실행

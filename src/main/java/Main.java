@@ -1,4 +1,5 @@
 import com.back.App;
+import com.back.AppConfig;
 import com.back.AppContext;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 
@@ -12,6 +13,7 @@ public class Main {
         System.out.println(w);*/
         AppContext.init();
         new App().run();
+        AppConfig.setDevMode();
 
         //experiment2();
     }
