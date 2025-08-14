@@ -3,6 +3,7 @@ package com.back.domain.WiseSaying.repository;
 import com.back.domain.WiseSaying.entity.WiseSaying;
 import com.back.standard.util.Util;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -66,5 +67,9 @@ public class WiseSayingFileRepository {
 
     public boolean delete(WiseSaying wiseSaying1) {
         return Util.file.delete(getFilePath(wiseSaying1.getId()));
+    }
+
+    public List<WiseSaying> findAll() {
+        return null;
     }
 }
